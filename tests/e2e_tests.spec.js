@@ -21,12 +21,12 @@ test.describe('End to End tests - Spec', ()=> {
     let accountsOverviewPage;
     let openNewAccountPage;
     let transferFundsPage;
+    let billPay;
     let transactionsApi;
     let userData;
     let newAccountNo;
     let accountBalance;
     let finalAccountBalance;
-    let billPay;
     let payeeDetails;
     const TRANSFER_AMOUNT = 10;
     const BILL_AMOUNT = 20;
@@ -56,10 +56,10 @@ test.describe('End to End tests - Spec', ()=> {
         accountsOverviewPage = new AccountsOverview(page);
         openNewAccountPage = new OpenNewAccount(page);
         transferFundsPage = new TransferFunds(page);
+        billPay = new BillPay(page);
         apiRequestContext = await request.newContext();
         transactionsApi = new TransactionsApi(apiRequestContext);
-        billPay = new BillPay(page);
-
+        // Test data to registed a new user
         userData = TestDataHelper.generateUserData();
         // Register a new user
         await loginPage.clickRegisterLink();
@@ -91,7 +91,7 @@ test.describe('End to End tests - Spec', ()=> {
 
     });
 
-    test('Verify user is able to transfer funds from newly created account to other account', async ()=> {
+    test('Verify user is able to transfer funds and pay bills from newly created account', async ()=> {
 
         await test.step('Transfer funds from the newly created savings account', async () => {
             await homePage.goToTransferFunds();
@@ -109,11 +109,7 @@ test.describe('End to End tests - Spec', ()=> {
             expect(currentBalNumeric).toBeCloseTo(finalAccountBalance, 2, `Expected remaining balance to be close to ${finalAccountBalance}, but got ${currentBalNumeric}`);
         });
 
-    });
-
-    test('Verify user is able to pay the bills', async ()=> {
-
-        await test.step('Go to pay bills and pay the bill', async () => {
+         await test.step('Go to pay bills and pay the bill', async () => {
             payeeDetails = TestDataHelper.generatePayeeData();
             await homePage.goToBillPay();
             await billPay.payBill(payeeDetails, BILL_AMOUNT, newAccountNo );
@@ -129,13 +125,14 @@ test.describe('End to End tests - Spec', ()=> {
             expect(currentBalNumeric).toBeCloseTo(expectedBal, 2, `Expected remaining balance to be close to ${expectedBal}, but got ${currentBalNumeric}`);
         });
 
-        await test.step('verify the bill payment by making call to transaction api', async () => {
+        await test.step('Verify the bill payment by making an api call to transaction api', async () => {
             var response = await transactionsApi.getTransactionsByAmount(newAccountNo,BILL_AMOUNT);
             const responseBody = await response.json();
-            expect(response.status()).toBe(200);
-            expect(responseBody[0]['accountId'].toString()).toEqual(newAccountNo);
-            expect(responseBody[0]['amount']).toEqual(BILL_AMOUNT);
-            expect(responseBody[0]['description']).toEqual('Bill Payment to ' + `${payeeDetails.firstName}`);
+            expect(response.status()).toBe(200, `Expected status code to be 200, but received ${response.status()}`);
+            expect(responseBody[0]['accountId'].toString()).toEqual(newAccountNo, `Expected accountId to be "${newAccountNo}", but received "${responseBody[0]['accountId']}"`);
+            expect(responseBody[0]['amount']).toEqual(BILL_AMOUNT, `Expected amount to be "${BILL_AMOUNT}", but received "${responseBody[0]['amount']}"`);
+            expect(responseBody[0]['description']).toEqual('Bill Payment to ' + `${payeeDetails.firstName}`, `Expected description to be "Bill Payment to ${payeeDetails.firstName}", but received "${responseBody[0]['description']}"`);
+
         });
 
     });
@@ -153,7 +150,7 @@ test.describe('End to End tests - Spec', ()=> {
             const servicesHeaderText = await homePage.getServicesHeaderText();
             console.log(servicesHeaderText);
             services_headers.forEach((services_header, index) => {
-                expect(servicesHeaderText[index]).toEqual(services_header, `Text at index ${index} does not match`);
+                expect(servicesHeaderText[index]).toEqual(services_header, `Header name at index ${index} is not expected`);
             });
         });
 
@@ -163,7 +160,7 @@ test.describe('End to End tests - Spec', ()=> {
             const adminPageSectionTexts = await homePage.getAdminPageSectionsTexts();
             expect(adminPageHeaderText).toEqual("Administration", "User did not land on the Admin page.");
             admin_sections.forEach((admin_section, index) => {
-                expect(adminPageSectionTexts[index].trim()).toEqual(admin_section, `Text at index ${index} does not match`);
+                expect(adminPageSectionTexts[index].trim()).toEqual(admin_section, `Section name at index ${index} is not expected`);
             });
         });
 
