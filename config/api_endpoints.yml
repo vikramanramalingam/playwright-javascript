@@ -1,0 +1,8 @@
+# api_endpoints.yml
+base_url: "https://parabank.parasoft.com/parabank/services/bank/"
+
+endpoints:
+  transactions:
+    path: "accounts/{account_id}/transactions/amount/{amount}"
+    method: "GET"
+    description: "Process a transaction on the specified account with the given amount"
