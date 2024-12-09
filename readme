@@ -75,3 +75,7 @@ cd <playwright-test>
 ### To Run Test:
 
 - npm playwright test
+
+## Local Run Results:
+- I have attached the screenshot from local run to results folder
+- Note: Login with invalid credentials is failin because the application at times throws internal error occured instead of the expected error.
