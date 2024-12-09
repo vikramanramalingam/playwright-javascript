@@ -20,15 +20,9 @@ class TransactionsApi extends BaseApi {
      * @returns {Promise<object>} The response object returned by the GET request.
      */
     async getTransactionsByAmount(accountNumber, amount) {
-        // Replace placeholders in the URL with the actual account number and amount
         const endpoint = this.apiConfig.endpoints.transactions.path
             .replace('{account_id}', accountNumber)
             .replace('{amount}', amount);
-
-        // Log the endpoint for debugging purposes
-        console.log('The endpoint is: ' + endpoint);
-
-        // Perform the GET request and return the response
         const response = await this.get(endpoint, {});
         return response;
     }

@@ -23,6 +23,7 @@ class BillPay extends BillPayLocators {
      * @returns {Promise<void>}
      */
     async payBill(payeeDetails, amount, fromAccountNo) {
+        await this.page.waitForTimeout(5000);
         await this.firstName.fill(payeeDetails.firstName);
         await this.address.fill(payeeDetails.address);
         await this.city.fill(payeeDetails.city);

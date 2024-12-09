@@ -27,7 +27,6 @@ class LoginPage extends LoginPageLocators {
         await this.userName.fill(username);
         await this.password.fill(password);
         await this.loginButton.click();
-        await PageHelper.waitForElementVisible(this.logout);
     }
 
     /**
@@ -35,6 +34,7 @@ class LoginPage extends LoginPageLocators {
      * @returns {Promise<string>} - The error message text.
      */
     async getLoginError(){
+        await PageHelper.waitForElementVisible(this.loginErrorMessage);
         return await this.loginErrorMessage.textContent();
     }
 
@@ -59,6 +59,7 @@ class LoginPage extends LoginPageLocators {
      * @returns {Promise<boolean>} - True if the logout button is present, otherwise false.
      */
     async verifyLogOutButtonIsPresent(){
+        await PageHelper.waitForElementVisible(this.logout);
         return await PageHelper.containsLocator(this.logout);
     }
 
