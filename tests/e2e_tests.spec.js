@@ -153,7 +153,7 @@ test.describe('End to End tests - Spec', ()=> {
             const servicesHeaderText = await homePage.getServicesHeaderText();
             console.log(servicesHeaderText);
             services_headers.forEach((services_header, index) => {
-                expect(servicesHeaderText[index]).toBe(services_header, `Text at index ${index} does not match`);
+                expect(servicesHeaderText[index]).toEqual(services_header, `Text at index ${index} does not match`);
             });
         });
 
@@ -163,7 +163,7 @@ test.describe('End to End tests - Spec', ()=> {
             const adminPageSectionTexts = await homePage.getAdminPageSectionsTexts();
             expect(adminPageHeaderText).toEqual("Administration", "User did not land on the Admin page.");
             admin_sections.forEach((admin_section, index) => {
-                expect(adminPageSectionTexts[index].trim()).toBe(admin_section, `Text at index ${index} does not match`);
+                expect(adminPageSectionTexts[index].trim()).toEqual(admin_section, `Text at index ${index} does not match`);
             });
         });
 
