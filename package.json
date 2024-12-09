@@ -1,9 +1,11 @@
 {
   "name": "playwright-test",
   "version": "1.0.0",
-  "description": "sample",
+  "description": "QA Code Challenge",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+  "test": "playwright test ./tests/**/*.spec.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
