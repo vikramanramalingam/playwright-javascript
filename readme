@@ -4,39 +4,41 @@ This repository contains Playwright-based end-to-end tests for verifying user in
 
 ---
 
-## Test Details
+## **Test Details**
 
-### 1. **Login - Spec**
+### **1. Login - Spec**
 
 The **Login - Spec** file tests the login flow, including scenarios like invalid login attempts and registering a new user. It consists of the following steps:
 
-- **Verify user is not able to login with invalid credentials**  
-    Tries to login using randomly generated invalid credentials and asserts that an error message is displayed.
+- **Verify user is not able to login with invalid credentials:**  
+  Tries to login using randomly generated invalid credentials and asserts that an error message is displayed.
 
-- **Verify user is able to register a new user and login with the registered user**  
-    Registers a new user with generated data, logs out, and logs back in using the registered credentials to verify the user can access the account overview.
+- **Verify user is able to register a new user and login with the registered user:**  
+  Registers a new user with generated data, logs out, and logs back in using the registered credentials to verify the user can access the account overview.
 
 ---
 
-### 2. **End to End Tests - Spec**
+### **2. End to End Tests - Spec**
 
 The **End to End Tests - Spec** file covers a more comprehensive test flow, ensuring that multiple user actions are performed correctly across different pages:
 
-- **Verify user is able to open a new savings account**  
-    Navigates to the "Open New Account" page, opens a savings account, and verifies that the account is created successfully.
+- **Verify user is able to open a new savings account:**  
+  Navigates to the "Open New Account" page, opens a savings account, and verifies that the account is created successfully.
 
-- **Verify user is able to transfer funds from newly created account**  
-    Transfers a predefined amount from the new account to another account and checks that the balance is updated correctly.
+- **Verify user is able to transfer funds from the newly created account:**  
+  Transfers a predefined amount from the new account to another account and checks that the balance is updated correctly.
 
-- **Verify user is able to pay the bills**  
-    Pays a bill and verifies that the transaction is reflected in the account balance and confirmed via API.
+- **Verify user is able to pay the bills:**  
+  Pays a bill and verifies that the transaction is reflected in the account balance and confirmed via API.
 
-- **Verify user is able to navigate to different global sections**  
-    Navigates to various sections like About Us, Services, Admin, and Products, ensuring that the correct content is displayed.
+- **Verify user is able to navigate to different global sections:**  
+  Navigates to various sections like About Us, Services, Admin, and Products, ensuring that the correct content is displayed.
 
 ---
 
-## Folder Structure
+## **Folder Structure**
+
+The project is organized into the following folder structure:
 
 - **`pages/`**: Contains page objects for the various pages of the application (e.g., `LoginPage`, `RegisterPage`, `HomePage`).
 - **`utils/`**: Utility functions and helper methods used across the tests (e.g., `PageHelper`, `TestDataHelper`).
@@ -44,24 +46,6 @@ The **End to End Tests - Spec** file covers a more comprehensive test flow, ensu
 
 ---
 
-## Test Data
+## **Test Data**
 
-Test data is dynamically generated using `TestDataHelper`. This includes generating random usernames, passwords, and payee details, ensuring that each test run is isolated and does not depend on fixed test data.
-
----
-
-## Prerequisites
-
-- Node.js (v14 or above)
-- Playwright
-
----
-
-## Getting Started
-
-To get started with the project, clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/vikramanramalingam/playwright-test
-cd playwright-test
-npm install
+Test data is dynamically generated using **TestDataHelper**. This includes generating random usernames, passwords, and payee details, ensuring that each test run is isolated and does not depend on fixed test data.
