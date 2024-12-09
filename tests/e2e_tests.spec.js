@@ -117,7 +117,6 @@ test.describe('End to End tests - Spec', ()=> {
         await test.step('verify the bill payment by making call to transaction api', async () => {
             var response = await transactionsApi.getTransactionsByAmount(newAccountNo,BILL_AMOUNT);
             const responseBody = await response.json();
-            console.log("the response body is" + JSON.stringify(responseBody));
             expect(response.status()).toBe(200);
             expect(responseBody[0]['accountId'].toString()).toEqual(newAccountNo);
             expect(responseBody[0]['amount']).toEqual(BILL_AMOUNT);
