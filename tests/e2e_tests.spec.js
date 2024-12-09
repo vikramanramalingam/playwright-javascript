@@ -31,6 +31,21 @@ test.describe('End to End tests - Spec', ()=> {
     const TRANSFER_AMOUNT = 10;
     const BILL_AMOUNT = 20;
 
+    // services page header texts
+    const services_headers = [
+        "Available Bookstore SOAP services:",
+        "Bookstore services:",
+        "Available ParaBank SOAP services:",
+        "ParaBank services:",
+        "Available RESTful services:"
+    ];
+    // adming page section texts
+    const admin_sections = [
+        "Data Access Mode",
+        "Web Service",
+        "Application Settings"
+    ];
+
     test.beforeAll(async ({ browser, baseURL }) => {
         const context = await browser.newContext();
         page = await context.newPage();
@@ -121,6 +136,41 @@ test.describe('End to End tests - Spec', ()=> {
             expect(responseBody[0]['accountId'].toString()).toEqual(newAccountNo);
             expect(responseBody[0]['amount']).toEqual(BILL_AMOUNT);
             expect(responseBody[0]['description']).toEqual('Bill Payment to ' + `${payeeDetails.firstName}`);
+        });
+
+    });
+
+    test('Verify user is able to navigate to different global sections', async ()=> {
+
+        await test.step('Go to about us section', async () => {
+            await homePage.goToAboutUs();
+            const aboutUsHeaderText = await homePage.getAboutUsHeaderText();
+            expect(aboutUsHeaderText).toEqual("ParaSoft Demo Website", "User did not land on the About page.");
+        });
+
+        await test.step('Go to services section', async () => {
+            await homePage.goToServices();
+            const servicesHeaderText = await homePage.getServicesHeaderText();
+            console.log(servicesHeaderText);
+            services_headers.forEach((services_header, index) => {
+                expect(servicesHeaderText[index]).toBe(services_header, `Text at index ${index} does not match`);
+            });
+        });
+
+        await test.step('Go to admin section', async () => {
+            await homePage.goToAdminPage();
+            const adminPageHeaderText = (await homePage.getAdminPageHeaderText()).trim();
+            const adminPageSectionTexts = await homePage.getAdminPageSectionsTexts();
+            expect(adminPageHeaderText).toEqual("Administration", "User did not land on the Admin page.");
+            admin_sections.forEach((admin_section, index) => {
+                expect(adminPageSectionTexts[index].trim()).toBe(admin_section, `Text at index ${index} does not match`);
+            });
+        });
+
+        await test.step('Go to products section', async () => {
+            await homePage.goToProductsPage();
+            const productsPageText = await homePage.getProductsPageHeaderText();
+            expect(productsPageText).toEqual("Products", "User did not land on the Products page.");
         });
 
     });
