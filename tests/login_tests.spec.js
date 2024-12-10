@@ -12,7 +12,7 @@ test.describe('Login - Spec', ()=> {
     let loginPage;
     let registerPage;
     let accountsOverviewPage;
-    let userData
+    let userData;
 
     test.beforeAll(async ({ browser, baseURL }) => {
         const context = await browser.newContext();
@@ -45,7 +45,6 @@ test.describe('Login - Spec', ()=> {
             await loginPage.clickRegisterLink();
             await registerPage.registerNewUser(userData);
             const welcomeMsg = await registerPage.getWelcomeText();
-            console.log('the message is'+ welcomeMsg);
             expect(welcomeMsg).toEqual(expectedWelcomeMsg, `Expected welcome message to be "${expectedWelcomeMsg}", but received: ${welcomeMsg}`);
         });
 

@@ -4,17 +4,26 @@
   "description": "QA Code Challenge",
   "main": "index.js",
   "scripts": {
-  "test": "playwright test"
+    "test": "playwright test",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vikraman VR <vikramvr20@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.49.0",
-    "@types/node": "^22.10.1"
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.4.2"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
     "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

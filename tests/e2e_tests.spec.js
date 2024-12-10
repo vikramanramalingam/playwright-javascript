@@ -148,7 +148,6 @@ test.describe('End to End tests - Spec', ()=> {
         await test.step('Go to services section', async () => {
             await homePage.goToServices();
             const servicesHeaderText = await homePage.getServicesHeaderText();
-            console.log(servicesHeaderText);
             services_headers.forEach((services_header, index) => {
                 expect(servicesHeaderText[index]).toEqual(services_header, `Header name at index ${index} is not expected`);
             });
