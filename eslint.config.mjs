@@ -1,12 +1,12 @@
-module.exports = [
+export default [
   {
-    files: ['**/*.{js,ts}'],
+    files: ['**/*.js'],
     rules: {
       'no-console': 'warn',
-      'no-unused-vars': 'warn'
+      'no-unused-vars': 'warn',
     },
     languageOptions: {
       ecmaVersion: 'latest',
-    }
+    },
   },
 ];
