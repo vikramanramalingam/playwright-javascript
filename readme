@@ -1,4 +1,6 @@
-# **Playwright Test Suite**
+## Page Object Model Pattern with Playwright
+
+![alt text](./playwright-logo.png)
 
 This repository contains end-to-end tests built with Playwright to validate key user interactions on a sample web application. The test suite ensures the functionality of critical workflows, including login, registration, account management, and more.
 
@@ -72,9 +74,13 @@ Clone this repository to your local machine:
 git clone <https://github.com/vikramanramalingam/playwright-test>
 cd <playwright-test>
 
-### To Run Test:
+If you want to run test locally, please follow these steps:
 
-- npm playwright test
+1. Clone this repository
+2. Make sure you have `node.js` installed. If you don't, please visit [official website](https://nodejs.org/en/download/) for instructions 
+3. Run `npm install` to install node modules
+4. That's it, now you can run tests with `npm run test`.
+
 
 ## Local Run Results:
 - I have attached the screenshot from local run to results folder
