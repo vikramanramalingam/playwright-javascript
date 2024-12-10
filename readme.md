@@ -1,10 +1,37 @@
 ## Page Object Model Pattern with Playwright
 
-![alt text](./playwright-logo.png)
-
 This repository contains end-to-end tests built with Playwright to validate key user interactions on a sample web application. The test suite ensures the functionality of critical workflows, including login, registration, account management, and more.
 
 ---
+
+## Installation
+
+### Using init command
+
+The easiest way to get started with Playwright Test is to run the init command.
+
+```Shell
+# Run from your project's root directory
+npm init playwright@latest
+# Or create a new project
+npm init playwright@latest new-project
+```
+
+### Manually
+
+Add dependency and install browsers.
+
+```Shell
+npm i -D @playwright/test
+# install supported browsers
+npx playwright install
+```
+
+You can optionally install only selected browsers, see [install browsers](https://playwright.dev/docs/cli#install-browsers) for more details. Or you can install no browsers at all and use existing [browser channels](https://playwright.dev/docs/browsers).
+
+* [Getting started](https://playwright.dev/docs/intro)
+* [API reference](https://playwright.dev/docs/api/class-playwright)
+
 
 ## **Test Scenarios**
 
@@ -70,7 +97,7 @@ Ensure you have the following installed:
 
 Clone this repository to your local machine:
 
-```bash
+```Shell
 git clone <https://github.com/vikramanramalingam/playwright-test>
 cd <playwright-test>
 
@@ -80,7 +107,7 @@ If you want to run test locally, please follow these steps:
 2. Make sure you have `node.js` installed. If you don't, please visit [official website](https://nodejs.org/en/download/) for instructions 
 3. Run `npm install` to install node modules
 4. That's it, now you can run tests with `npm run test`.
-
+```
 
 ## Local Run Results:
 - I have attached the screenshot from local run to results folder
