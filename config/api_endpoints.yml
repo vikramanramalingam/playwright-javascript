@@ -6,3 +6,9 @@ endpoints:
     path: "accounts/{account_id}/transactions/amount/{amount}"
     method: "GET"
     description: "Get the details of a transaction on the specified account with the given amount"
+    transferFunds: "transfer?fromAccountId={fromAccountId}&toAccountId={toAccountId}&amount={amount}"
+  accounts:
+    createAccount: "/createAccount?customerId={customerId}&newAccountType={accountType}&fromAccountId={sourceFundAccount}"
+  customers:
+    getCustomerId: "/login/{username}/{password}"
+    getCustomerDetails: "/customers/{customerId}"

@@ -26,6 +26,25 @@ class TransactionsApi extends BaseApi {
         const response = await this.get(endpoint, {});
         return response;
     }
+
+    /**
+     * Method to transfer funds between accounts
+     * This method makes a POST request to the transferFunds endpoint.
+     *
+     * @param {string|number} fromAccount - The from account number.
+     * @param {string|number} toAccount - The to account number.
+     * @param {string|number} amount - The amount to be transferred.
+     *
+     * @returns {Promise<object>} The response object returned by the GET request.
+     */
+    async transferFunds(fromAccount, toAccount, amount) {
+        const endpoint = this.apiConfig.endpoints.transactions.transferFunds
+            .replace('{fromAccount}', fromAccount)
+            .replace('{toAccount}', toAccount)
+            .replace('{amount}', amount)
+        const response = await this.post(endpoint, {});
+        return response;
+    }
 }
 
 module.exports = { TransactionsApi };
