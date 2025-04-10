@@ -54,19 +54,20 @@ test.describe('End to End tests - Spec', ()=> {
 
         await test.step('create a new savings account', async () => {
             customerId = await customerApi.getCustomerId(userData.username, userData.password);
-            var response = await customerApi.getCustomerAccounts(customerId);
-            var responseBody = await response.json();
-            oldAccountId = responseBody[0]['id'];
-            newAccountId = await accountsApi.createAccount(customerId,2,oldAccountId)
+            var accountRes = await customerApi.getCustomerAccounts(customerId);
+            var accountResBody = await accountRes.json();
+            oldAccountId = accountResBody[0]['id'];
+            var newAccountResBody = await accountsApi.createAccount(customerId,1,oldAccountId)
+            newAccountId = newAccountResBody['id'];
         });
 
         await test.step('Transfer funds from old account to new account', async () => {
             await transactionsApi.transferFunds(oldAccountId,newAccountId,TRANSFER_AMOUNT);
-            var response = await transactionsApi.getTransactionsByAmount(newAccountId,TRANSFER_AMOUNT);
-            const responseBody = await response.json();
-            expect(response.status()).toBe(200, `Expected status code to be 200, but received ${response.status()}`);
-            expect(responseBody[0]['accountId'].toString()).toEqual(newAccountId, `Expected accountId to be "${newAccountId}", but received "${responseBody[0]['accountId']}"`);
-            expect(responseBody[0]['amount']).toEqual(TRANSFER_AMOUNT, `Expected amount to be "${TRANSFER_AMOUNT}", but received "${responseBody[0]['amount']}"`);
+            var transactionRes = await transactionsApi.getTransactionsByAmount(newAccountId,TRANSFER_AMOUNT);
+            const transactionResBody = await transactionRes.json();
+            expect(transactionRes.status()).toBe(200, `Expected status code to be 200, but received ${transactionRes.status()}`);
+            expect(transactionResBody[0]['accountId'].toString()).toEqual(newAccountId.toString(), `Expected accountId to be "${newAccountId}", but received "${transactionResBody[0]['accountId']}"`);
+            expect(transactionResBody[0]['amount']).toEqual(TRANSFER_AMOUNT, `Expected amount to be "${TRANSFER_AMOUNT}", but received "${transactionResBody[0]['amount']}"`);
         });
 
 

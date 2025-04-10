@@ -39,8 +39,8 @@ class TransactionsApi extends BaseApi {
      */
     async transferFunds(fromAccount, toAccount, amount) {
         const endpoint = this.apiConfig.endpoints.transactions.transferFunds
-            .replace('{fromAccount}', fromAccount)
-            .replace('{toAccount}', toAccount)
+            .replace('{fromAccountId}', fromAccount)
+            .replace('{toAccountId}', toAccount)
             .replace('{amount}', amount)
         const response = await this.post(endpoint, {});
         return response;

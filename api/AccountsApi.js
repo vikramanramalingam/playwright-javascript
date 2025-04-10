@@ -27,7 +27,7 @@ class AccountsApi extends BaseApi {
             .replace('{sourceFundAccount}', sourceFundAccount);
         const response = await this.post(endpoint, {});
         const responseBody = await response.json();
-        return responseBody.id;
+        return responseBody;
     }
 }
 
