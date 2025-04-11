@@ -1,14 +1,14 @@
 const { test,expect,request } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
-const { PageHelper }  = require('../utils/PageHelper');
-const { TestDataHelper }  = require('../utils/TestDataHelper');
-const { RegisterPage } = require('../pages/RegisterPage');
-const { HomePage } = require('../pages/HomePage');
-const { AccountsOverview } = require('../pages/AccountsOverview');
-const { OpenNewAccount } = require('../pages/OpenNewAccount');
-const { TransferFunds } = require('../pages/TransferFunds');
-const { BillPay } = require('../pages/BillPay');
-const { TransactionsApi } = require('../api/TransactionsApi');
+const { LoginPage } = require('../../pages/LoginPage');
+const { PageHelper }  = require('../../utils/PageHelper');
+const { TestDataHelper }  = require('../../utils/TestDataHelper');
+const { RegisterPage } = require('../../pages/RegisterPage');
+const { HomePage } = require('../../pages/HomePage');
+const { AccountsOverview } = require('../../pages/AccountsOverview');
+const { OpenNewAccount } = require('../../pages/OpenNewAccount');
+const { TransferFunds } = require('../../pages/TransferFunds');
+const { BillPay } = require('../../pages/BillPay');
+const { TransactionsApi } = require('../../api/TransactionsApi');
 
 test.describe('End to End tests - Spec', ()=> {
 

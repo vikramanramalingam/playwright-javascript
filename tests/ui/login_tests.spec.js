@@ -1,9 +1,9 @@
 const { test,expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
-const { PageHelper }  = require('../utils/PageHelper');
-const { TestDataHelper }  = require('../utils/TestDataHelper');
-const { RegisterPage } = require('../pages/RegisterPage');
-const { AccountsOverview } = require('../pages/AccountsOverview');
+const { LoginPage } = require('../../pages/LoginPage');
+const { PageHelper }  = require('../../utils/PageHelper');
+const { TestDataHelper }  = require('../../utils/TestDataHelper');
+const { RegisterPage } = require('../../pages/RegisterPage');
+const { AccountsOverview } = require('../../pages/AccountsOverview');
 
 test.describe('Login - Spec', ()=> {
 

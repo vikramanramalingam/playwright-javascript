@@ -4,7 +4,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  api-tests:
+    name: Run API Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run API tests
+        run: npx playwright test tests/api
+
+      - name: Upload API Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-results
+          path: results/
+
+  ui-tests:
+    name: Run UI Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +49,12 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run UI tests
+        run: npx playwright test tests/ui
 
-      - name: Upload Playwright test results
+      - name: Upload UI Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-results
+          name: ui-test-results
           path: results/
